@@ -4,10 +4,7 @@ import LoginPage from './components/LoginPage';
 import FriendsList from './components/FriendsList';
 import Navbar from './components/Navbar';
 import AddFriend from './components/AddFriend';
-import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-
+import { Redirect } from 'react-router-dom/';
 function App() {
   // const [token , setToken] = useState(localStorage.getItem('token'));
 
