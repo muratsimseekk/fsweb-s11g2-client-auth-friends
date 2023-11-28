@@ -15,7 +15,7 @@ function FriendsList() {
 
 
   return (
-    <div className='flex flex-col gap-3 mt-14'>
+    <div className='flex flex-col gap-3 mt-10'>
         <div>
             <h1 className='uppercase font-black text-7xl'>Friend List</h1>
         </div>

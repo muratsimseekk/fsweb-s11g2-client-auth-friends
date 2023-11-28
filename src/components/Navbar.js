@@ -8,7 +8,7 @@ function Navbar() {
             <ul className='flex gap-6 mb-3'>
                 <li className='p-3 bg-black text-white'> <a href='/'> LOGIN.</a></li>
                 <li className='p-3 bg-black text-white'> <a href='/friends'>FRIENDLIST.</a></li>
-                <li className='p-3 bg-black text-white'>ADDFRIEND.</li>
+                <li className='p-3 bg-black text-white'> <a href='/add'>ADDFRIEND.</a></li>
                 <li className='p-3 bg-black text-white'>LOGOUT</li>
             </ul>
         </div>
