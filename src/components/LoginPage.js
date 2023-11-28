@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { axiosWithAuth } from '../axiosAuth';
 import { useHistory ,Redirect } from 'react-router-dom/';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,6 +14,8 @@ function LoginPage() {
         username:username,
         password:password,
     }
+
+    
     const dispatch = useDispatch();
     const submitHandler = (e) =>{
         e.preventDefault();
