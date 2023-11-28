@@ -5,8 +5,16 @@ import FriendsList from './components/FriendsList';
 import Navbar from './components/Navbar';
 import AddFriend from './components/AddFriend';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 function App() {
+  // const [token , setToken] = useState(localStorage.getItem('token'));
+
+  // useEffect(()=>{
+  //   setToken(localStorage.getItem('token'))
+  // },[token])
+
   const token = localStorage.getItem('token')
   return (
     <div className="App">

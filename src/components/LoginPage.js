@@ -14,14 +14,21 @@ function LoginPage() {
         username:username,
         password:password,
     }
+    const dispatch = useDispatch();
     const submitHandler = (e) =>{
         e.preventDefault();
         // console.log('submite basildi' ,userData);
-        axiosWithAuth().post('http://localhost:9000/api/login' ,userData).then(res => {
+        axiosWithAuth()
+        .post('http://localhost:9000/api/login' ,userData)
+        .then(res => {
             localStorage.setItem('token',res.data.token)
+            // dispatch({
+            //     type:'SET_TOKEN' ,
+            //     payload:res.data.token
+            // })
             history.push('/friends')
-        }).catch(err => setError('Login is unsuccesfull ,try again'))
-
+        }).catch(err => setError('Login is unsuccessful ,try again'))
+        
     }
 
   return (

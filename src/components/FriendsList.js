@@ -4,10 +4,9 @@ import { useSelector } from 'react-redux'
 
 function FriendsList() {
 
-    const tokenVarmi = useSelector(state => state.token)
     const [list , setlist] = useState([])
 
-    console.log('token var mi ?' , tokenVarmi);
+    
     useEffect(()=>{
         axiosWithAuth().get('http://localhost:9000/api/friends').then(res => {
         setlist(res.data);
@@ -23,8 +22,8 @@ function FriendsList() {
             <h1 className='uppercase font-black text-7xl'>Friend List</h1>
         </div>
         <div className='flex flex-col gap-6 '>
-            {list.map(item => (
-            <h3 className='uppercase font-bold text-xl'>- {item.name} - {item.email}</h3>
+            {list.map((item , i) => (
+            <h3 key={i} className='uppercase font-bold text-xl'>- {item.name} - {item.email}</h3>
             ))}
         </div>
     </div>
