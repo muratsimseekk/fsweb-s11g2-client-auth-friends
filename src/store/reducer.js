@@ -1,17 +1,14 @@
 
 const userInitial = {
     username : '' ,
-    password : ''
+    password : '',
+    token : ''
 }
   
   export const reducer = (state = userInitial, action) => {
     switch (action.type) {
-      case "SET_USERNAME":
-        return { ...state, username: action.payload };
-
-      case "SET_PASSWORD":
-        return { ...state, password: action.payload };
-  
+      case 'SET_TOKEN' :
+        return {...state , token:action.payload }
       default:
         return state;
 

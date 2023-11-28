@@ -1,6 +1,17 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function Navbar() {
+
+    const history = useHistory();
+
+    const logOutHandler = () => {
+        let token = localStorage.getItem('token');
+        token = '';
+        localStorage.setItem('token',token)
+        history.push('/')
+    }
+
   return (
     <div className='w-screen flex flex-col gap-20 items-center  uppercase text-xl'>
         <div className='flex w-2/3 justify-between mt-24 items-baseline border-b-2 border-black'>
@@ -9,7 +20,7 @@ function Navbar() {
                 <li className='p-3 bg-black text-white'> <a href='/'> LOGIN.</a></li>
                 <li className='p-3 bg-black text-white'> <a href='/friends'>FRIENDLIST.</a></li>
                 <li className='p-3 bg-black text-white'> <a href='/add'>ADDFRIEND.</a></li>
-                <li className='p-3 bg-black text-white'>LOGOUT</li>
+                <button onClick={logOutHandler} className='p-3 bg-black text-white'> LOGOUT</button>
             </ul>
         </div>
     </div>

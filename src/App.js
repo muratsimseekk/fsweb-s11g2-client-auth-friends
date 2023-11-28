@@ -4,8 +4,10 @@ import LoginPage from './components/LoginPage';
 import FriendsList from './components/FriendsList';
 import Navbar from './components/Navbar';
 import AddFriend from './components/AddFriend';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 function App() {
+  const token = localStorage.getItem('token')
   return (
     <div className="App">
       
@@ -15,10 +17,10 @@ function App() {
           <LoginPage />
         </Route>
         <Route exact path='/friends'>
-          <FriendsList />
+          {token ? <FriendsList /> : <Redirect to='/' />}
         </Route>
         <Route exact path='/add'>
-          <AddFriend />
+        {token ? <AddFriend /> : <Redirect to='/' /> }  
         </Route>
         
       </Router>
