@@ -1,12 +1,30 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { store } from '../store/store';
 function LoginPage() {
+
+    const [username , setUserName] = useState('');
+    const [password , setPassword] = useState('');
+
+    const dispatch = useDispatch();
+    const submitHandler = (e) =>{
+        e.prevent.default();
+        dispatch({
+            type:'SET_USERNAME',
+            payload:username,
+        })
+        dispatch({
+            type:'SET_PASSWORD',
+            payload:password
+        })
+    }
+
   return (
     <div className='w-screen flex flex-col gap-20 items-center  uppercase text-xl'>
         <div className='flex w-2/3 justify-between mt-24 items-baseline border-b-2 border-black'>
             <h1 className='font-bold tracking-wider'>Friends database</h1>
             <ul className='flex gap-6 mb-3'>
-                <li className='p-3 bg-black text-white'>LOGIN.</li>
+                <li className='p-3 bg-black text-white'> <a href='/'> LOGIN.</a></li>
                 <li className='p-3 bg-black text-white'>FRIENDLIST.</li>
                 <li className='p-3 bg-black text-white'>ADDFRIEND.</li>
                 <li className='p-3 bg-black text-white'>LOGOUT</li>
@@ -20,13 +38,13 @@ function LoginPage() {
                 <label className='font-extrabold'>
                     UserName   
                 </label>
-                <input className='bg-black text-white w-full h-14' />
+                <input type='text' onChange={(e) => setUserName(e.target.value)} className='bg-black text-white font-bold w-full h-14' />
             </div>
             <div className='flex flex-col items-start '>
                 <label className='font-extrabold'>
                     password
                 </label>
-                <input className='bg-black text-white font-bold w-full h-14' />
+                <input type='password' onChange={(e) => setPassword(e.target.value)} className='bg-black text-white font-bold w-full h-14' />
             </div>
             <div>
                 <button className='bg-black text-white w-full h-14 font-extrabold uppercase' type='submit'>Submit</button>
