@@ -1,17 +1,15 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
+
 
 function Navbar() {
 
     const history = useHistory();
 
     const logOutHandler = () => {
-        let token = localStorage.getItem('token');
-        token = '';
-        localStorage.setItem('token',token)
+        localStorage.removeItem('token');
         history.push('/')
     }
-
   return (
     <div className='w-screen flex flex-col gap-20 items-center  uppercase text-xl'>
         <div className='flex w-2/3 justify-between mt-24 items-baseline border-b-2 border-black'>
