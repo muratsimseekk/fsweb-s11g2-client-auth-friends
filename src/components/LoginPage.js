@@ -1,36 +1,31 @@
+import axios from 'axios';
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { store } from '../store/store';
+import { axiosWithAuth } from '../axiosAuth';
+import { useHistory } from 'react-router-dom/';
+
 function LoginPage() {
 
     const [username , setUserName] = useState('');
     const [password , setPassword] = useState('');
 
-    const dispatch = useDispatch();
+    const history = useHistory()
+    const userData = {
+        username:username,
+        password:password,
+    }
     const submitHandler = (e) =>{
-        e.prevent.default();
-        dispatch({
-            type:'SET_USERNAME',
-            payload:username,
+        e.preventDefault();
+        console.log('submite basildi' ,userData);
+        axiosWithAuth().post('http://localhost:9000/api/login' ,userData).then(res => {
+            localStorage.setItem('token',res.data.token)
+            history.push('/friends')
         })
-        dispatch({
-            type:'SET_PASSWORD',
-            payload:password
-        })
+
     }
 
   return (
-    <div className='w-screen flex flex-col gap-20 items-center  uppercase text-xl'>
-        <div className='flex w-2/3 justify-between mt-24 items-baseline border-b-2 border-black'>
-            <h1 className='font-bold tracking-wider'>Friends database</h1>
-            <ul className='flex gap-6 mb-3'>
-                <li className='p-3 bg-black text-white'> <a href='/'> LOGIN.</a></li>
-                <li className='p-3 bg-black text-white'>FRIENDLIST.</li>
-                <li className='p-3 bg-black text-white'>ADDFRIEND.</li>
-                <li className='p-3 bg-black text-white'>LOGOUT</li>
-            </ul>
-        </div>
-        <div className='w-1/4 flex flex-col gap-5 py-3  text-black'>
+    <div className='w-screen flex flex-col  items-center  uppercase text-xl'>
+        <div className='w-1/4 flex flex-col gap-5 py-3 mt-10  text-black'>
             <div>
             <h1 className='font-extrabold text-5xl'>Login</h1>
             </div>
@@ -47,7 +42,7 @@ function LoginPage() {
                 <input type='password' onChange={(e) => setPassword(e.target.value)} className='bg-black text-white font-bold w-full h-14' />
             </div>
             <div>
-                <button className='bg-black text-white w-full h-14 font-extrabold uppercase' type='submit'>Submit</button>
+                <button onClick={submitHandler} className='bg-black text-white w-full h-14 font-extrabold uppercase' type='submit'>Submit</button>
             </div>
         </div>
     </div>

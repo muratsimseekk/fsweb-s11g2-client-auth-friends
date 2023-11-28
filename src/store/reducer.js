@@ -8,8 +8,7 @@ const userInitial = {
     switch (action.type) {
       case "SET_USERNAME":
         return { ...state, username: action.payload };
-       
-  
+
       case "SET_PASSWORD":
         return { ...state, password: action.payload };
   
