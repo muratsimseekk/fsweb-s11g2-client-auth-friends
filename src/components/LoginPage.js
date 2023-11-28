@@ -7,7 +7,7 @@ function LoginPage() {
 
     const [username , setUserName] = useState('');
     const [password , setPassword] = useState('');
-
+    const [error,setError] = useState('')
     const history = useHistory()
     const userData = {
         username:username,
@@ -15,11 +15,11 @@ function LoginPage() {
     }
     const submitHandler = (e) =>{
         e.preventDefault();
-        console.log('submite basildi' ,userData);
+        // console.log('submite basildi' ,userData);
         axiosWithAuth().post('http://localhost:9000/api/login' ,userData).then(res => {
             localStorage.setItem('token',res.data.token)
             history.push('/friends')
-        })
+        }).catch(err => setError('Login is unsuccesfull ,try again'))
 
     }
 
@@ -44,6 +44,7 @@ function LoginPage() {
             <div>
                 <button onClick={submitHandler} className='bg-black text-white w-full h-14 font-extrabold uppercase' type='submit'>Submit</button>
             </div>
+            <p className='text-red-700 font-bold'>{error}</p>
         </div>
     </div>
   )
